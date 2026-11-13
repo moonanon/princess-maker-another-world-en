@@ -1,0 +1,14 @@
+# ROMs, savestates and build output
+*.sfc
+*.smc
+*.srm
+*.mss
+roms/
+build/
+__pycache__/
+.show-your-work/
+
+# Private: research notes, the Japanese script, drafting and emulator tooling
+reference/
+src/text/*
+!src/text/script-en.json
