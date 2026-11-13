@@ -25,8 +25,23 @@ class TextError(Exception):
     pass
 
 
+def _narrow():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('_narrow', Path(__file__).resolve().parents[2] / 'src' / 'patches' / '_narrow.py')
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def widths() -> dict[str, int]:
-    return json.loads(FONT_JSON.read_text())['widths']
+    """{character: advance}, the font's and then the condensed set's (each letter's code + $60, see `condense`)."""
+    return {**json.loads(FONT_JSON.read_text())['widths'], **_narrow().condensed_widths()}
+
+
+def condense(text: str) -> str:
+    """`text` (already normalized) in the condensed set where it has the letter: the stat labels' look."""
+    w = _narrow().condensed_widths()
+    return ''.join(chr(ord(c) + 0x60) if chr(ord(c) + 0x60) in w else c for c in text)
 
 
 def tokens(text: str) -> list[tuple[str, object]]:

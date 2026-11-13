@@ -20,7 +20,7 @@ the RTL at $87:8003, which returns to our JSL.
 
 from asm65816 import assemble
 
-from _layout import CODE, FONT, FONT_COUNT, GRID_MAP, NAME_MAP, WIDTHS, WINDOW_SETUP_CODE_AT, put, snes_to_rom
+from _layout import CFONT, CODE, CONDENSED, FONT, FONT_COUNT, VWF_GLYPHS, GRID_MAP, NAME_MAP, WIDTHS, WINDOW_SETUP_CODE_AT, put, snes_to_rom
 
 GRID_LO, GRID_HI = 0xC710AE, 0xC710F3  # the name-entry grid's one-byte codes (C7:10AE, 6 rows of 12 + the back/done cells)
 # The grid's cells in order (the code picking a cell stores) and what each stands for. Its window draws 16 px cells, so
@@ -332,7 +332,7 @@ vw_notsoft:
         AND #$00FF
         SEC
         SBC #$0020
-        CMP #{FONT_COUNT}
+        CMP #{VWF_GLYPHS}
         BCS vw_end
         TAX
         LDA ${WIDTHS:06X},X
@@ -369,10 +369,12 @@ vwf_letter:                 ; A = $01xx; D = 0; DB = $7E
 vl_letter:
         SEC
         SBC #$0020
-        CMP #{FONT_COUNT}
+        CMP #{VWF_GLYPHS}
         BCC vl_ok
         LDA #$0000
 vl_ok:  STA $F014           ; glyph index
+        CMP #${CONDENSED:04X}
+        BCS vl_cond
         ASL A
         ASL A
         ASL A
@@ -382,6 +384,20 @@ vl_ok:  STA $F014           ; glyph index
         STA $6C             ; [$6C] = the glyph's 16 rows ($6C-$6F: the text engine's scratch)
         LDA #{FONT >> 16}
         STA $6E
+        BRA vl_rows
+vl_cond:                    ; the condensed set (stat labels): its rows are at CFONT
+        SEC
+        SBC #${CONDENSED:04X}
+        ASL A
+        ASL A
+        ASL A
+        ASL A
+        CLC
+        ADC #{CFONT & 0xFFFF}
+        STA $6C
+        LDA #{CFONT >> 16}
+        STA $6E
+vl_rows:
         LDX $F014
         LDA ${WIDTHS:06X},X
         AND #$00FF

@@ -51,6 +51,11 @@ TEXT_FIELDS = ['final', 'claude', 'templates', 'labels', 'draft']
 RESERVED_RUNS = {'C7:1173', 'C7:119C', 'C7:11C3'}
 TEXT_SKIP: set[str] = set()  # entry keys left Japanese (build.py --skip, to bisect a bad line)
 FONT_FIRST, FONT_COUNT = 0x20, 0x5F
+# Condensed letters (the overview labels' tiny set, _narrow.py TINY) for stat labels drawn as text: code $01xx with
+# xx = the letter's ASCII + CONDENSED, glyph index FONT_COUNT+1.. (WIDTHS runs on; the rows are at CFONT).
+CONDENSED = 0x60
+CFONT = 0xDB2000  # 16 bytes per condensed glyph, from the condensed space ($0180)
+VWF_GLYPHS = 0xC0  # glyph indices the VWF accepts: the font, then the condensed set
 
 
 def put(rom: bytearray, addr: int, data: bytes) -> None:

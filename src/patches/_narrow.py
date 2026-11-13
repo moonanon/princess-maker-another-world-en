@@ -74,3 +74,19 @@ def tiny_rows(ch: str) -> tuple[list[int], int]:
     for y, r in enumerate(pat):
         rows[4 + y] = sum(0x80 >> x for x, c in enumerate(r) if c == '#')
     return rows, len(pat[0])
+
+
+CONDENSED_COUNT = 0x60  # the condensed set covers U+0020-U+007F, like the VWF font
+
+
+def condensed_glyph(ch: str) -> tuple[list[int], int]:
+    """(16 rows, advance) of the VWF's condensed letter for `ch`: TINY drawn 1 px apart; ([0]*16, 0) without one."""
+    if ch not in TINY:
+        return [0] * 16, 0
+    rows, w = tiny_rows(ch)
+    return rows, w + 1
+
+
+def condensed_widths() -> dict[str, int]:
+    """{condensed character: advance}: the character is chr(ord(letter) + 0x60), as the build writes it."""
+    return {chr(ord(c) + 0x60): len(p.split('|')[0]) + 1 for c, p in TINY.items()}

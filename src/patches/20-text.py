@@ -22,7 +22,7 @@ import re
 from collections import Counter
 
 import _layout
-from en_text import TextError, encode, layout, normalize, parse_addr, tokens, widths
+from en_text import TextError, condense, encode, layout, normalize, parse_addr, tokens, widths
 from _layout import REPO, TextAllocator, put, snes_to_rom
 import layout as text_layout
 import script_vm
@@ -30,6 +30,22 @@ import script_vm
 DF, WAIT_FOR_ANIMATION, NEWLINE, WAIT_FRAMES = 0xDF, 0xE1, 0xDB, 0xE0
 ROW_TICK = 8  # the narration window's text delay: frames a 16 px character (the Japanese: 14 a row, 112 frames)
 ROW_SLACK = 1  # frames a row of English takes besides its letters (one each) and blanks (the DB and the E0), measured
+# Stat labels in the school / work panels (and the day's Gold / Earned / Spent): drawn in the condensed set, like the
+# overview's labels, so the full words fit (C7 $11EC-$5FFF; the vacation box after it stays Japanese).
+CONDENSED_LABELS = {'Vigor', 'Might', 'Intellect', 'Grace', 'Charm', 'Morality', 'Faith', 'Sin', 'Sensitivity', 'Stress',
+                    'Etiquette', 'Cooking', 'Art', 'Cleaning', 'Speech', 'Temperance', 'Combat', 'Attack', 'Defense',
+                    'Sorcery', 'Mana', 'Magic Def.', 'Gold', 'Earned', 'Spent'}
+
+
+def condensed_label(key: str, entry: dict, text: str) -> bool:
+    bank, off = parse_addr(key) >> 16, parse_addr(key) & 0xFFFF
+    if text not in CONDENSED_LABELS:
+        return False
+    if (entry.get('table') or '').startswith('C7:0A8F['):  # the stat names the panels print (88:9530: DE <name> DB)
+        return True
+    return bank == 0xC7 and 0x11EC <= off < 0x6000 and not entry.get('table')
+
+
 LABEL_CHARS, CHAR_PX = 12, 12  # a Japanese run this short is a label or menu item
 MAX_LINE_PX = 16 * CHAR_PX  # the widest window seen: 16 characters a line
 # String tables left Japanese: the item list draws garbled in its (staged-tile) list window; the others are data
@@ -189,7 +205,8 @@ def blank_and_merge_short(rom: bytearray, merged: dict, in_sentence: set, target
         if not any(ne.get(f) for f in _layout.TEXT_FIELDS):
             continue
         try:
-            words = encode(normalize(entry[field].rstrip('. ') if len(entry['jp']) <= 3 else entry[field]))
+            text = entry[field].rstrip('. ') if len(entry['jp']) <= 3 else entry[field]
+            words = encode(condense(normalize(text)) if condensed_label(key, entry, text) else normalize(text))
         except TextError:
             continue
         ne['_start'] = key
@@ -399,16 +416,16 @@ def apply(rom: bytearray) -> None:
                     skipped['draft wider than any box'] += 1
                     continue
                 gate = (px, bytes(rom[snes_to_rom(start):snes_to_rom(resume)]))
-        if 0 < jp_chars <= LABEL_CHARS and field not in ('final', 'labels') and not entry.get('subst') and is_label(entry) and not re.search(r'[.!?]', entry.get('jp', '')):
-            text = text.rstrip('. ')  # a label or menu item has no full stop
-        if list_word and field != 'final' and not re.search(r'[.!?]', entry.get('jp', '')):
+        if 0 < jp_chars <= LABEL_CHARS and field not in ('final', 'labels') and not entry.get('subst') and is_label(entry) and not re.search(r'[.!?]', entry.get('jp', '')) and not condensed_label(key, entry, text):
+            text = text.rstrip('. ')  # a label or menu item has no full stop (a stat label keeps its abbreviation's)
+        if list_word and field != 'final' and not re.search(r'[.!?]', entry.get('jp', '')) and not condensed_label(key, entry, text):
             text = text.rstrip('. ')  # a word from a list that jumps on into a sentence (the dish parts): no full stop
         try:
             if entry.get('rows'):
                 words = encode_rows(text, entry['rows'], entry.get('tail', 0), entry.get('center', False),
                                     entry.get('total_rows', 0))
             else:
-                words = encode_sentence(text, entry['subst']) if entry.get('subst') else encode(normalize(text))
+                words = encode_sentence(text, entry['subst']) if entry.get('subst') else encode(condense(normalize(text)) if condensed_label(key, entry, text) else normalize(text))
             jp_raw = entry.get('jp', '')
             list_pad = b''
             if entry.get('table') and (jp_raw.endswith('\u3000') or list_cells(entry)):  # a list entry padded to fill its row: the game
