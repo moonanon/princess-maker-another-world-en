@@ -176,15 +176,15 @@ def blank_and_merge_short(rom: bytearray, merged: dict, in_sentence: set, target
                 or key in _layout.RESERVED_RUNS or key in _layout.TEXT_SKIP):
             continue
         start, end = parse_addr(key), parse_addr(entry['end'])
-        if end - start >= 4 or end >> 16 != start >> 16:
-            continue
-        if not entry.get('blank') and extend_short(rom, end, start)[1] - start >= 4:
-            continue  # the codes after it make room: the usual detour
-        if entry.get('blank'):
+        if entry.get('blank') and end >> 16 == start >> 16:  # its words are in the run before it: no-ops, any length
             off = snes_to_rom(start)
             rom[off:off + end - start] = bytes([0xD0]) * (end - start)
             blanked.add(key)
             continue
+        if end - start >= 4 or end >> 16 != start >> 16:
+            continue
+        if extend_short(rom, end, start)[1] - start >= 4:
+            continue  # the codes after it make room: the usual detour
         field = next((f for f in _layout.TEXT_FIELDS if entry.get(f)), '')
         if entry.get('nomerge'):  # maybe data, not text: left alone
             continue
