@@ -23,6 +23,9 @@ HOOK = 0xC39BB7  # LDA #$1561 / STA $7E9FEF / LDA #$00C3 / STA $7E9FF1 (14 bytes
 HOOK_ORIGINAL = bytes.fromhex('A961158FEF9F7EA9C3008FF19F7E')
 PEACEFUL = (12, 13, 15)
 MESSAGE = "'s Morality fell by 30."
+# Wait, then `FC 00`: with nothing pending FC hands control back to the game, which reads the next byte as its
+# command; the defeat line (C3:1561) and the peaceful people's Life lines all end `FC 00`.
+END = bytes([0xD8, 0xFC, 0x00])
 
 
 LIFE_HOOK = 0xC38684  # in `83:8659`: TAY / LDA #$00C3 / JSL $87:820D (the daughter's demand line)
@@ -30,14 +33,15 @@ LIFE_HOOK_ORIGINAL = bytes.fromhex('A8A9C300220D8287')
 
 
 def life_message() -> bytes:
-    """After her demand line: a new page, "[name]'s Morality fell by 30.", wait, end."""
-    return bytes([0xD8, 0xDA, 0xDE]) + (0x7E0EE8).to_bytes(3, 'little') + encode(MESSAGE) + bytes([0xD8, 0xFC])
+    """After her demand line: a new page, "[name]'s Morality fell by 30.", wait, `FC 00`."""
+    return bytes([0xD8, 0xDA, 0xDE]) + (0x7E0EE8).to_bytes(3, 'little') + encode(MESSAGE) + END
 
 
 def script(at: int) -> bytes:
-    """Call the game's defeat line, then a new page: her name + the penalty message, wait, return."""
-    return (bytes([0xDE]) + (0xC31561).to_bytes(3, 'little') + bytes([0xD8, 0xDA, 0xDE]) +
-            (0x7E0EE8).to_bytes(3, 'little') + encode(MESSAGE) + bytes([0xD8, 0xFC]))
+    """Window 0 (a started script opens with its window byte, as C3:1561 does), call the game's defeat line past its
+    window byte (C3:1562), then a new page: her name + the penalty message, wait, `FC 00`."""
+    return (bytes([0x00, 0xDE]) + (0xC31562).to_bytes(3, 'little') + bytes([0xD8, 0xDA, 0xDE]) +
+            (0x7E0EE8).to_bytes(3, 'little') + encode(MESSAGE) + END)
 
 
 def code(script_at: int, msg_at: int = 0) -> str:
