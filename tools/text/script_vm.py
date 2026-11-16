@@ -81,6 +81,13 @@ NATIVE_FLOW = {
     # Builds `DF C8:<word>` at $7E:A633 from C8:6D9A (20 descending words; the first target ends the table).
     0x88C3B9: (0, False, [(0xC8, w) for w in _words(0xC8, 0x6D9A, 20)]),
 }
+# The word tables those natives read, (bank, offset) -> bytes: data laid between script blocks, never a block start.
+DATA_TABLES = {(0xC8, 0x0D64): 8, (0xC8, 0x6D9A): 40}
+
+
+def in_data_table(bank: int, off: int, length: int = 1) -> bool:
+    """Whether bytes off..off+length-1 of `bank` touch one of DATA_TABLES."""
+    return any(b == bank and off < o + n and o < off + length for (b, o), n in DATA_TABLES.items())
 
 MAX_BAD_TABLE_ENTRIES = 2
 MAX_TOKENS = 12000  # a walk longer than this has run into data
@@ -448,7 +455,7 @@ def walk_entry_points() -> tuple[list, dict]:
     tried = set()
     while True:
         fresh = [(b, n) for (b, o), (c, a, n) in merged.items()
-                 if (c in ENDS or (c == 0xDD and native_args(int.from_bytes(a[:3], 'little'))[1])) and b in TEXT_BANKS + HIGH_SCRIPT_BANKS and (b, n) not in merged and (b, n) not in tried]
+                 if (c in ENDS or (c == 0xDD and native_args(int.from_bytes(a[:3], 'little'))[1])) and b in TEXT_BANKS + HIGH_SCRIPT_BANKS and (b, n) not in merged and (b, n) not in tried and not in_data_table(b, n)]
         if not fresh:
             break
         for start in fresh:

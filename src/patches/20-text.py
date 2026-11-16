@@ -388,6 +388,9 @@ def apply(rom: bytearray) -> None:
         if divmod(start, 0x10000) not in walked and not entry.get('table') and 'resume' not in entry:
             skipped['start is not a script token (inside a code\'s arguments)'] += 1  # a DF there corrupts the code
             continue
+        if script_vm.in_data_table(start >> 16, start & 0xFFFF, 4):
+            skipped['inside a word table a native reads'] += 1
+            continue
         resume = parse_addr(entry.get('resume') or entry['end'])
         if entry.get('table') and 'resume' not in entry and rom[snes_to_rom(resume) - 1] == 0xFC:
             resume -= 1  # a table string's `end` is past its FC terminator: resume on the FC, not the next string
