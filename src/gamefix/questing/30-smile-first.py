@@ -25,7 +25,17 @@ flip:
 
 
 def item(lead: bytes, word: str, resume: int) -> bytes:
-    return lead + bytes([0x08, 0x01, 0x20]) + encode(word) + bytes([0xDF]) + resume.to_bytes(3, 'little')
+    return lead + encode(word) + bytes([0xDF]) + resume.to_bytes(3, 'little')
+
+
+def lead_of(rom: bytearray, detour: int, word: str) -> bytes:
+    """The bytes 20-text.py put before `word` in the item the detour at `detour` jumps to (its row and spacing codes)."""
+    o = snes_to_rom(detour)
+    target = snes_to_rom(int.from_bytes(rom[o + 1:o + 4], 'little'))
+    at = rom.find(encode(word), target, target + 32)
+    if at < 0:
+        raise SystemExit(f'no {word!r} in the item ${detour:06X} jumps to')
+    return bytes(rom[target:at])
 
 
 def apply(rom: bytearray) -> None:
@@ -37,8 +47,8 @@ def apply(rom: bytearray) -> None:
             raise SystemExit(f'${a:06X} is not an English detour (20-text.py)')
     code, labels = assemble(AT, CODE)
     put(rom, AT, code)
-    first = item(bytes([0xD1]), 'Smile', FIRST_RESUME)
-    second = item(b'', 'Scare', SECOND_RESUME)
+    first = item(lead_of(rom, FIRST, 'Scare'), 'Smile', FIRST_RESUME)
+    second = item(lead_of(rom, SECOND, 'Smile'), 'Scare', SECOND_RESUME)
     at1 = AT + len(code)
     at2 = at1 + len(first)
     put(rom, at1, first)
