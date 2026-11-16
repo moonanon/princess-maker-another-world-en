@@ -40,6 +40,36 @@ screens still show Japanese text or layout glitches. Bug reports and awkward lin
 
 > **Your daughter:** Father, thank you for loving me and raising me all these years...
 
+## How to play
+
+Underneath the cute graphics this is a stat management game, and it punishes you for trying to do everything at once.
+Working the farm and then studying etiquette doesn't add up to much for most endings. Pick a couple of stats that
+complement each other and pour everything into them, while keeping the baseline ones in check.
+
+**The loop.** Each month you schedule three parts: School, Work, Quest or Rest. Work earns the gold that pays for
+school, school makes her better at her jobs, and better jobs earn more gold. Around that loop come random events with
+their own pros and cons, visits to the castle, quests for more events and bounties, and plain fooling around to see
+the endings. Nothing tells you outright what does what: when she starts acting up, open the status screens, note her
+stats, and match her behaviour to them.
+
+**Thresholds beat totals.** The endings and events mostly check whether a stat has reached a mark, such as 200 or
+250, not how high it climbs past it. It's fine to push one area to the marks you want and then pivot to another,
+say from the farm and combat school to etiquette or the hairdresser, going back and forth to keep the marks you
+already reached.
+
+**Watch these** (read from the game's code):
+
+- **Stress against Vigor.** Once Stress is 90 or more above Vigor, she falls ill. The Illness gauge on her profile
+  page tracks this.
+- **Stress against Morality and Faith.** Stress far above the higher of the two pushes her towards delinquency, the
+  Delinquency gauge on her profile page. At 60 or more above, there is a 1 in 20 chance each month that she runs away;
+  at 100 above, she is arrested.
+- **Sensitivity as her top stat.** If Sensitivity is the highest of her nine base stats (Vigor through Sensitivity),
+  there is a 1 in 4 chance each month that she runs away. Keep something else above it.
+
+**You will mess up**, and you'll learn from it. She might fall in with a bad crowd, get arrested, or run away from
+home, and that's all part of the Princess Maker experience. Save often and try again.
+
 ## The patches
 
 Apply **one** IPS patch from [`dist/`](dist/) to the unmodified Japanese ROM (don't stack them), with any IPS patcher
@@ -61,6 +91,9 @@ md5 `135ad0c718e88aaa9de9ce848b47753a`.
 - **The jester**: after his farewell he is gone from the castle, instead of still being visitable there.
 - **The Demon King's proposal**: in the hero ending where she slays the Demon King, he no longer turns up afterwards
   to ask for her hand.
+- **The young dragon's proposal**: when the young dragon and his grandfather come to ask for her hand and you answer
+  **Allow It**, he now comes back for her at the end, as he promises. In the original nothing ever recorded your answer,
+  so his marriage ending could never happen. Answering **Refuse** works as before.
 
 ### Quest rework (`-questing` only)
 

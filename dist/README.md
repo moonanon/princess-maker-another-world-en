@@ -17,6 +17,9 @@ Three patches. Pick **one** and apply it to the unmodified Japanese ROM (do not 
 - **The jester**: after his farewell he is gone from the castle, instead of still being visitable there.
 - **The Demon King's proposal**: in the hero ending where she slays the Demon King, he no longer turns up afterwards
   to ask for her hand.
+- **The young dragon's proposal**: when the young dragon and his grandfather come to ask for her hand and you answer
+  **Allow It**, he now comes back for her at the end, as he promises. In the original nothing ever recorded your answer,
+  so his marriage ending could never happen. Answering **Refuse** works as before.
 
 ## Questing (`-questing` only)
 
