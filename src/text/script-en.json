@@ -3,6 +3,7 @@
  "entries": {
   "C7:1098": {
    "end": "C7:10A0",
+   "resume": "C7:10A0",
    "where": "name entry: the player's family name (then DF into the grid C7:10AC)",
    "final": "Your Family Name",
    "jp": "xxxxxx",
@@ -10,6 +11,7 @@
   },
   "C7:10A5": {
    "end": "C7:10AC",
+   "resume": "C7:10AC",
    "where": "name entry: the daughter's name (C7:10A4 is the entry point's window byte 00; the script starts at 10A5)",
    "final": "Daughter's Name",
    "jp": "xxxx",
@@ -7206,8 +7208,8 @@
   "C0:35DA": {
    "end": "C0:35DD",
    "labels": "Swords",
-   "final": "Swords",
-   "claude": "Swords",
+   "final": "Swordplay",
+   "claude": "Swordplay",
    "draft": "Swordsmanship.",
    "jp": "xx",
    "label": true
