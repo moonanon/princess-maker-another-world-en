@@ -60010,14 +60010,7 @@
    "jp": "***xxxxxxxxxxxxx",
    "label": false
   },
-  "C8:3D74": {
-   "end": "C8:3D8A",
-   "claude": ".",
-   "draft": "I'm afraid I can't translate that line as it appears to be gibberish. Please provide a valid Japanese sentence for translation.",
-   "jp": "xxxxxxxxxxxxxxxxxxxx{D2}x",
-   "label": false
-  },
-  "C8:3D8B": {
+  "C8:3D8C": {
    "end": "C8:3D91",
    "claude": "brave",
    "draft": "Be brave!",
@@ -60123,7 +60116,7 @@
    "jp": "xx",
    "label": true
   },
-  "C8:3DF8": {
+  "C8:3E00": {
    "end": "C8:3E0C",
    "claude": "bright and sociable",
    "draft": "She's bright and outgoing.",

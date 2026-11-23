@@ -80,9 +80,14 @@ NATIVE_FLOW = {
     0x88AAED: (0, False, [(0xC8, w) for w in _words(0xC8, 0x0D64, 4)]),  # X from $88:AB25: 0, 2, 4 or 6
     # Builds `DF C8:<word>` at $7E:A633 from C8:6D9A (20 descending words; the first target ends the table).
     0x88C3B9: (0, False, [(0xC8, w) for w in _words(0xC8, 0x6D9A, 20)]),
+    # Builds the ordinary husband's three words (`DF C8:<word>` at $A14D/$A151/$A633), then carries on.
+    0x88DA93: (0, True, [(0xC8, w) for t, n in ((0x3D74, 12), (0x3DE0, 3), (0x3DF8, 4)) for w in _words(0xC8, t, n)]),
 }
 # The word tables those natives read, (bank, offset) -> bytes: data laid between script blocks, never a block start.
-DATA_TABLES = {(0xC8, 0x0D64): 8, (0xC8, 0x6D9A): 40}
+DATA_TABLES = {(0xC8, 0x0D64): 8, (0xC8, 0x6D9A): 40,
+               # 88:DA93 builds `DF C8:<word>` at $A14D/$A151/$A633 for the ordinary husband's description:
+               # 12 words indexed by $94EE, 3 by the top of Combat/Sorcery/Temper, 4 by $94DA.
+               (0xC8, 0x3D74): 24, (0xC8, 0x3DE0): 6, (0xC8, 0x3DF8): 8}
 
 
 def in_data_table(bank: int, off: int, length: int = 1) -> bool:
