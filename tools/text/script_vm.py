@@ -22,11 +22,15 @@ SCRIPT_END = 0x8000  # in every text bank the upper half is 65816 code (the JSLs
 # The endings: C8:2462 `F5 7E:99C8` (the ending id) jumps to 3-byte entries in bank $84, the upper half of the
 # graphics bank C4 (84:825B, 84:8937, ...): script there, at $8000 and up.
 HIGH_SCRIPT_BANKS = (0x84,)
+# Endings 60-100 (C6:0000 .. C6:6DEA) are script in the lower half of the graphics bank C6, reached only from the
+# same table: walked when jumped to, never scanned for message starts.
+LOW_SCRIPT_BANKS = (0xC6,)
 
 
 def in_script(bank: int, off: int) -> bool:
     """Whether (bank, off) can hold script: a text bank's lower half, or the upper half of a HIGH_SCRIPT_BANKS bank."""
-    return bank in TEXT_BANKS and off < SCRIPT_END or bank in HIGH_SCRIPT_BANKS and off >= SCRIPT_END
+    return ((bank in TEXT_BANKS or bank in LOW_SCRIPT_BANKS) and off < SCRIPT_END
+            or bank in HIGH_SCRIPT_BANKS and off >= SCRIPT_END)
 
 # Argument bytes after each control code (handlers at $87:83DC + the table at $87:8382; each handler's
 # reads of $9FEF counted). $DD is handled separately (3-byte native address + that routine's inline args),
@@ -98,7 +102,7 @@ def in_data_table(bank: int, off: int, length: int = 1) -> bool:
     return any(b == bank and off < o + n and o < off + length for (b, o), n in DATA_TABLES.items())
 
 MAX_BAD_TABLE_ENTRIES = 2
-MAX_TOKENS = 12000  # a walk longer than this has run into data
+MAX_TOKENS = 20000  # a walk longer than this has run into data (the ending table alone walks ~18300)
 FILL_MAX_TOKENS = 800  # a block between two known ones is short
 
 
@@ -230,7 +234,7 @@ def walk(starts, past_fc: bool = False, known: dict | None = None, follow_tables
         if len(seen) > max_tokens:
             warn.append(('invalid', bank, off, -2))  # a real message chain is far shorter: this is data
             break
-        if bank not in TEXT_BANKS and bank not in HIGH_SCRIPT_BANKS:
+        if bank not in TEXT_BANKS + HIGH_SCRIPT_BANKS + LOW_SCRIPT_BANKS:
             warn.append(('badtarget', bank, off))
             continue
         run: dict = {}
@@ -343,7 +347,7 @@ def walk(starts, past_fc: bool = False, known: dict | None = None, follow_tables
             run[(bank, off)] = (code, _rom[f + size:f + size + lead], p)
             run_todo += [(b, o, True) for b, o in entries]
             break
-        if ok and any(t[0] not in TEXT_BANKS + HIGH_SCRIPT_BANKS and t[0] != 0x7E for t in run_todo if not t[2]):
+        if ok and any(t[0] not in TEXT_BANKS + HIGH_SCRIPT_BANKS + LOW_SCRIPT_BANKS and t[0] != 0x7E for t in run_todo if not t[2]):
             warn.append(('softinvalid' if soft else 'invalid', bank, off, -1))  # jumps out of the script banks: not script
             ok = False
         if ok:
@@ -463,7 +467,7 @@ def walk_entry_points() -> tuple[list, dict]:
     tried = set()
     while True:
         fresh = [(b, n) for (b, o), (c, a, n) in merged.items()
-                 if (c in ENDS or (c == 0xDD and native_args(int.from_bytes(a[:3], 'little'))[1])) and b in TEXT_BANKS + HIGH_SCRIPT_BANKS and (b, n) not in merged and (b, n) not in tried and not in_data_table(b, n)]
+                 if (c in ENDS or (c == 0xDD and native_args(int.from_bytes(a[:3], 'little'))[1])) and b in TEXT_BANKS + HIGH_SCRIPT_BANKS + LOW_SCRIPT_BANKS and (b, n) not in merged and (b, n) not in tried and not in_data_table(b, n)]
         if not fresh:
             break
         for start in fresh:
