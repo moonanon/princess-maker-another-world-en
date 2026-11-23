@@ -67,6 +67,10 @@ already reached.
 - **Sensitivity as her top stat.** If Sensitivity is the highest of her nine base stats (Vigor through Sensitivity),
   there is a 1 in 4 chance each month that she runs away. Keep something else above it.
 
+**Want to know what decides each ending?** [ENDINGS.md](ENDINGS.md) lists every ending and the stats behind it,
+read from the game's code. Be warned: knowing the endings spoils a lot of the magic of the series. Finding out what
+she becomes without the rules is half the fun, so consider saving it for after your first playthrough.
+
 **You will mess up**, and you'll learn from it. She might fall in with a bad crowd, get arrested, or run away from
 home, and that's all part of the Princess Maker experience. Save often and try again.
 
