@@ -7354,7 +7354,7 @@
   },
   "C0:3713": {
    "end": "C0:371C",
-   "final": "Pleasure Hall",
+   "final": "Grand Salon",
    "claude": "Grand Salon",
    "draft": "A hall of entertainment.",
    "jp": "xxxxx",
@@ -33302,7 +33302,7 @@
   "C3:382E": {
    "end": "C3:3832",
    "labels": "Vigor",
-   "claude": "Stamina",
+   "claude": "Vigor",
    "draft": "Stamina.",
    "jp": "xx",
    "label": true
@@ -33310,7 +33310,7 @@
   "C3:3837": {
    "end": "C3:383B",
    "labels": "Intellect",
-   "claude": "Intelligence",
+   "claude": "Intellect",
    "draft": "Intelligence.",
    "jp": "xx",
    "label": true
@@ -33326,7 +33326,7 @@
   "C3:3849": {
    "end": "C3:384D",
    "labels": "Might",
-   "claude": "Strength",
+   "claude": "Might",
    "draft": "Strength.",
    "jp": "xx",
    "label": true
@@ -33334,7 +33334,7 @@
   "C3:3852": {
    "end": "C3:3856",
    "labels": "Grace",
-   "claude": "Refinement",
+   "claude": "Grace",
    "draft": "Grace.",
    "jp": "xx",
    "label": true
@@ -34235,7 +34235,7 @@
   "C3:4193": {
    "end": "C3:4197",
    "labels": "Grace",
-   "claude": "Refinement",
+   "claude": "Grace",
    "draft": "Graceful.",
    "jp": "xx",
    "label": true
@@ -34243,7 +34243,7 @@
   "C3:419F": {
    "end": "C3:41A3",
    "labels": "Intellect",
-   "claude": "Intelligence",
+   "claude": "Intellect",
    "draft": "Intelligence.",
    "jp": "xx",
    "label": true
@@ -34275,7 +34275,7 @@
   "C3:41CF": {
    "end": "C3:41D3",
    "labels": "Vigor",
-   "claude": "Stamina",
+   "claude": "Vigor",
    "draft": "Stamina.",
    "jp": "xx",
    "label": true
@@ -35473,7 +35473,7 @@
   "C3:4EFB": {
    "end": "C3:4EFF",
    "labels": "Grace",
-   "claude": "Refinement",
+   "claude": "Grace",
    "draft": "Refinement.",
    "jp": "xx",
    "label": true
@@ -35481,7 +35481,7 @@
   "C3:4F04": {
    "end": "C3:4F08",
    "labels": "Intellect",
-   "claude": "Intelligence",
+   "claude": "Intellect",
    "draft": "Intelligence.",
    "jp": "xx",
    "label": true
@@ -35513,7 +35513,7 @@
   "C3:4F28": {
    "end": "C3:4F2C",
    "labels": "Vigor",
-   "claude": "Stamina",
+   "claude": "Vigor",
    "draft": "Stamina.",
    "jp": "xx",
    "label": true
@@ -63606,7 +63606,7 @@
   "C8:6B7A": {
    "end": "C8:6B7F",
    "labels": "Swords",
-   "claude": "Swords",
+   "claude": "Swordplay",
    "draft": "Swordsmanship.",
    "jp": "　　xx",
    "label": true
@@ -64992,7 +64992,7 @@
   "C7:09C6": {
    "table": "C7:09A7[1]",
    "end": "C7:09CB",
-   "claude": "Language",
+   "claude": "Languages",
    "draft": "Language.",
    "jp": "xx",
    "label": true
@@ -65016,7 +65016,7 @@
   "C7:09D5": {
    "table": "C7:09A7[4]",
    "end": "C7:09D9",
-   "claude": "Swords",
+   "claude": "Swordplay",
    "draft": "Swordsmanship.",
    "jp": "xx",
    "label": true
@@ -66182,7 +66182,7 @@
   "C7:0F45": {
    "table": "C7:0E95[13]",
    "end": "C7:0F4C",
-   "claude": "Smith",
+   "claude": "Smithy",
    "draft": "The blacksmith.",
    "jp": "xxx",
    "label": true
