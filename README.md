@@ -4,9 +4,9 @@ An English translation patch for *Princess Maker: Legend of Another World*, the 
 optional patches that fix bugs in the original game and rework its Quest mode.
 
 Something of a slimmed-down take on *Princess Maker 2*, *Legend of Another World* has you raise Melody Blue, a girl
-from the faerie realm. Ten years ago you were the kingdom's greatest swordsman, fated to die in battle, until the Faerie
+from the faery realm. Ten years ago you were the kingdom's greatest swordsman, fated to die in battle, until the Faery
 King saved your life. Now a girl with no memory has been found at the edge of a forest, a white stag at her side, and
-the stag turns out to be a faerie who brings the Faerie King's request: that you raise her as your own daughter. As the
+the stag turns out to be a faery who brings the Faery King's request: that you raise her as your own daughter. As the
 old hero, you take in a foster daughter, with the stag as your butler, and for eight years, from age ten to eighteen,
 you choose her lessons, jobs, quests and vacations. How you raise her decides which of dozens of endings she reaches.
 

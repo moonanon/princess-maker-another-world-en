@@ -2240,7 +2240,7 @@
    "end": "84:A044",
    "final": "{01 20}was long praised by later ages",
    "claude": "{01 20}was long praised by later ages",
-   "draft": "The Faerie King asks me to raise her.",
+   "draft": "The Faery King asks me to raise her.",
    "jp": "xxx",
    "label": true
   },
@@ -7467,7 +7467,7 @@
     "C0:385E",
     "C0:386B"
    ],
-   "final": "[name1], in the name of the Green Faerie King, show me where you would keep your daughter [name2]'s record.",
+   "final": "[name1], in the name of the Green Faery King, show me where you would keep your daughter [name2]'s record.",
    "draft": "Miss [name1], in the name of the Green Fairy King, this is where you should keep records of your daughter [name2]'s progress.",
    "jp": "{D1}[name1]x,xxxxxxxxxxx,xxxxx[name2]xxxxxxxxxxxxxxxxxxxxx",
    "label": false
@@ -7506,7 +7506,7 @@
     "C0:38AC",
     "C0:38B9"
    ],
-   "final": "[name1], in the name of the Wind Faerie King, show me where you would keep your daughter [name2]'s record.",
+   "final": "[name1], in the name of the Wind Faery King, show me where you would keep your daughter [name2]'s record.",
    "draft": "Miss [name1], by order of the Fairy King, this is where you should keep track of your progress.",
    "jp": "{D1}[name1]x,xxxxxxxxxxx,xxxxx[name2]xxxxxxxxxxxxxxxxxxxxx",
    "label": false
@@ -7545,7 +7545,7 @@
     "C0:38F9",
     "C0:3907"
    ],
-   "final": "Dear [name1]... in the name of the Ice Faerie King, show me where [name2]'s record shall be kept in time.",
+   "final": "Dear [name1]... in the name of the Ice Faery King, show me where [name2]'s record shall be kept in time.",
    "draft": "Dear [name1], in the name of the Ice Fairy King, please designate a place to record your achievements.",
    "jp": "{D1}xxxx[name1]**xxxxxxxxxxx,[name2]xxxxxxxxxxxxxxxxxxxxxxx",
    "label": false
@@ -7584,7 +7584,7 @@
     "C0:394A",
     "C0:3957"
    ],
-   "final": "[name1], in the name of the Fire Faerie King, show me where you would keep your daughter [name2]'s record.",
+   "final": "[name1], in the name of the Fire Faery King, show me where you would keep your daughter [name2]'s record.",
    "draft": "Young lady [name1], in the name of the Fire Sprite King, this is the place where your records will be kept.",
    "jp": "{D1}[name1]x,xxxxxxxxxxx,xxxxx[name2]xxxxxxxxxxxxxxxxxxxxx",
    "label": false
@@ -33944,7 +33944,7 @@
     "C3:3EC0",
     "C3:3ED0"
    ],
-   "claude": "I am your guardian fairy, Arius, Fire Faerie King. [name1], I have seen your courage. You must have a heart worthy of it.",
+   "claude": "I am your guardian fairy, Arius, Fire Faery King. [name1], I have seen your courage. You must have a heart worthy of it.",
    "draft": "I am your guardian fairy, and I am also the Fire Fairy King, Arius [name1]. I've seen your courage, and you must now possess a heart worthy of it.",
    "jp": "xxx　xxxxxxxxxxxxxxxx*xxxx[name1]x,xxxxxx　xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
    "label": false
@@ -34032,7 +34032,7 @@
     "C3:3F66",
     "C3:3F8E"
    ],
-   "claude": "I am your guardian fairy, Romus, Green Faerie King. [name1], have a rich heart to support your valor.",
+   "claude": "I am your guardian fairy, Romus, Green Faery King. [name1], have a rich heart to support your valor.",
    "draft": "I am your guardian fairy, and I am Romus, the Green Fairy King. [name1], cultivate a generous spirit that will aid your courage.",
    "jp": "xxxxxxxxxxxxx,xxxxx*xxxxx[name1]x,xxxxxxxxxxxxxxxxxxxx",
    "label": false
@@ -34106,7 +34106,7 @@
   },
   "C3:404D": {
    "end": "C3:405C",
-   "claude": "Krishna, Ice Faerie King.",
+   "claude": "Krishna, Ice Faery King.",
    "draft": "The Ice Fairy King, Kurshna.",
    "jp": "xxxxx*xxxxx",
    "label": false
@@ -34188,7 +34188,7 @@
   },
   "C3:4113": {
    "end": "C3:412A",
-   "claude": "Others call me the Wind Faerie",
+   "claude": "Others call me the Wind Faery",
    "draft": "They call me the Fairy King of the Winds from beyond this land.",
    "jp": "xxxxxxxxxxxxxx",
    "label": false
@@ -55494,7 +55494,7 @@
   },
   "C7:618C": {
    "end": "C7:677D",
-   "final": "In an age when the world was still young, humans, beasts of legend and faeries lived side by side in chaos... / No king ruled the world, and people fought war after war, day after day... / Amid it all stood one kingdom, granted peace and prosperity by the might of its king and of a hero hailed as the greatest swordsman of the age. / In this land, called \"the one kingdom in all the world overflowing with light,\" people's hearts were warm and their lives were rich... / One day, at the edge of a forest in that peaceful kingdom, a girl was found lying unconscious. / The border guards who took her in said she was as pure and lovely as a faerie, but her memory was as empty as a newborn's... / And at her side, as her companion, stood a beautiful white stag... / Word of the girl drifted on the wind, until at last it reached the king's ears. / Deeply curious, the king sent the hero and the kingdom's finest witch to the girl. / They studied her closely... yet even the learned witch could not tell who she was. / Then, before their eyes, the white stag became a young man and answered their questions. / The girl and the stag came from the faerie world... / The one who had saved the hero, fated to die in battle ten years before, was the Faerie King himself... / And by the Faerie King's command, they had come to ask the hero to raise the girl as her foster father... / Hiding his dismay, the hero resolved to accept, to keep his old promise and repay the Faerie King's kindness. / And the white stag, in the guise of a young man, followed the girl as the hero's butler... / \"Well then... shall we go to my shabby house, which next to the faerie realm might pass for hell itself... my dear foster daughter...\" / At those words, the girl smiled for the very first time, a smile brimming over...",
+   "final": "In an age when the world was still young, humans, beasts of legend and faeries lived side by side in chaos... / No king ruled the world, and people fought war after war, day after day... / Amid it all stood one kingdom, granted peace and prosperity by the might of its king and of a hero hailed as the greatest swordsman of the age. / In this land, called \"the one kingdom in all the world overflowing with light,\" people's hearts were warm and their lives were rich... / One day, at the edge of a forest in that peaceful kingdom, a girl was found lying unconscious. / The border guards who took her in said she was as pure and lovely as a faery, but her memory was as empty as a newborn's... / And at her side, as her companion, stood a beautiful white stag... / Word of the girl drifted on the wind, until at last it reached the king's ears. / Deeply curious, the king sent the hero and the kingdom's finest witch to the girl. / They studied her closely... yet even the learned witch could not tell who she was. / Then, before their eyes, the white stag became a young man and answered their questions. / The girl and the stag came from the faery world... / The one who had saved the hero, fated to die in battle ten years before, was the Faery King himself... / And by the Faery King's command, they had come to ask the hero to raise the girl as her foster father... / Hiding his dismay, the hero resolved to accept, to keep his old promise and repay the Faery King's kindness. / And the white stag, in the guise of a young man, followed the girl as the hero's butler... / \"Well then... shall we go to my shabby house, which next to the faery realm might pass for hell itself... my dear foster daughter...\" / At those words, the girl smiled for the very first time, a smile brimming over...",
    "rows": 28,
    "tail": 183,
    "draft": "The world is young, a chaotic age where humans and mythical beasts and fairies coexist... There was no king to rule the land, and people were constantly embroiled in war... Yet, there existed a kingdom that brought peace and prosperity through the strength of a legendary hero and an unparalleled swordsman. This kingdom, known as \"the only realm filled with light,\" had warm-hearted people and a rich way of life... One day, near the edge of this peaceful kingdom's forest, a young girl was found unconscious. According to the border guards who rescued her, she possessed a beauty as pure as a fairy, but her memories were gone, like those of an infant... And by her side stood a magnificent white stag... The rumors about the girl spread, eventually reaching the king's ears. He took great interest and sent the hero and the kingdom's most skilled sorceress to investigate. The hero examined the girl... but even with all the sorceress's knowledge, they couldn't determine her origins. However, at that moment, the white stag transformed into a young man, answering their questions. He revealed that the girl was from the realm of fairies... and that he himself was the Fairy King, who had saved the hero from certain death ten years ago. He explained that he had sent the hero to be the girl's guardian. Hiding his true identity, the hero decided to fulfill his past debt to the Fairy King and accepted the mission. And so",
@@ -80573,7 +80573,7 @@
   },
   "C6:7463": {
    "end": "C6:7495",
-   "claude": "the faerie realm, home of the fae; the human realm, home of people; and the underworld, home of demons.",
+   "claude": "the faery realm, home of the fae; the human realm, home of people; and the underworld, home of demons.",
    "jp": "xxxxxxxxxxxxxxx,xxxxxxx,xxxxxxxxxxx",
    "label": false
   },
