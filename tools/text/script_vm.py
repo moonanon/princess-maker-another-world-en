@@ -87,7 +87,10 @@ NATIVE_FLOW = {
 DATA_TABLES = {(0xC8, 0x0D64): 8, (0xC8, 0x6D9A): 40,
                # 88:DA93 builds `DF C8:<word>` at $A14D/$A151/$A633 for the ordinary husband's description:
                # 12 words indexed by $94EE, 3 by the top of Combat/Sorcery/Temper, 4 by $94DA.
-               (0xC8, 0x3D74): 24, (0xC8, 0x3DE0): 6, (0xC8, 0x3DF8): 8}
+               (0xC8, 0x3D74): 24, (0xC8, 0x3DE0): 6, (0xC8, 0x3DF8): 8,
+               # Not a table: the ending driver starts the epilogue script at C8:2561 through $87:8302, so 2561
+               # is a window byte (04) and the script opens at 2562 with `DC 00 C8:0EC3`; never a text run.
+               (0xC8, 0x2561): 1}
 
 
 def in_data_table(bank: int, off: int, length: int = 1) -> bool:
