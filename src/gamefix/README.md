@@ -6,7 +6,7 @@ every translation module, and may import `src/patches/_layout.py`.
 
 | Dir | Variant | Patch |
 | --- | --- | --- |
-| `bugfix/` | `bugfix` (and `questing`) | `dist/princess-maker-en-bugfix.ips` — fixes to the original game's bugs, except the quest rating exploit (kept: some players want it) |
-| `questing/` | `questing` | `dist/princess-maker-en-questing.ips` — bug fixes + the reputation exploit closed + quest encounters: people act as people (Morality) |
+| `bugfix/` | `bugfix` (and `questing`) | `princess-maker-en-bugfix.ips` — fixes to the original game's bugs, except the quest rating exploit (kept: some players want it) |
+| `questing/` | `questing` | `princess-maker-en-questing.ips` — bug fixes + the reputation exploit closed + quest encounters: people act as people (Morality) |
 
-Player-facing notes: `dist/README.md`.
+Player-facing notes: `docs/release-notes.md` (the GitHub release text).

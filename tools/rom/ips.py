@@ -4,7 +4,7 @@
     python3 -I tools/rom/ips.py make <base.sfc> <patched.sfc> <out.ips>
     python3 -I tools/rom/ips.py apply [<base.sfc> [<patch.ips> [<out.sfc>]]]
 
-`apply` defaults: roms/base.sfc, dist/princess-maker-en.ips, dist/eng-out-<YYYYmmdd-HHMMSS>.sfc (the .sfc is
+`apply` defaults: roms/base.sfc, build/princess-maker-en.ips, dist/eng-out-<YYYYmmdd-HHMMSS>.sfc (the .sfc is
 gitignored).
 """
 
@@ -84,7 +84,7 @@ def main() -> None:
         a, b, out = (Path(x) for x in args)
         out.write_bytes(make(a.read_bytes(), b.read_bytes()))
     elif cmd == 'apply' and len(args) <= 3:
-        defaults = [REPO / 'roms' / 'base.sfc', REPO / 'dist' / 'princess-maker-en.ips',
+        defaults = [REPO / 'roms' / 'base.sfc', REPO / 'build' / 'princess-maker-en.ips',
                     REPO / 'dist' / f'eng-out-{time.strftime("%Y%m%d-%H%M%S")}.sfc']
         base, patch, out = (Path(x) for x in args + [str(d) for d in defaults[len(args):]])
         out.write_bytes(apply(base.read_bytes(), patch.read_bytes()))

@@ -76,7 +76,8 @@ home, and that's all part of the Princess Maker experience. Save often and try a
 
 ## The patches
 
-Apply **one** IPS patch from [`dist/`](dist/) to the unmodified Japanese ROM (don't stack them), with any IPS patcher
+Download **one** IPS patch from the [latest release](https://github.com/moonanon/princess-maker-another-world-en/releases/latest)
+and apply it to the unmodified Japanese ROM (don't stack them), with any IPS patcher
 (Floating IPS, Lunar IPS, or an online patcher such as Rom Patcher JS):
 *Princess Maker - Legend of Another World (Japan).sfc*, 2 MiB, no copier header,
 md5 `135ad0c718e88aaa9de9ce848b47753a`.
@@ -126,9 +127,13 @@ game.
 
 Python 3.10+ and Pillow. Put the Japanese ROM at `roms/base.sfc`, then:
 
-    python3 -I tools/rom/build.py                       # dist/princess-maker-en.ips
-    python3 -I tools/rom/build.py --variant bugfix      # dist/princess-maker-en-bugfix.ips
-    python3 -I tools/rom/build.py --variant questing    # dist/princess-maker-en-questing.ips
+    python3 -I tools/rom/build.py                       # build/princess-maker-en.ips
+    python3 -I tools/rom/build.py --variant bugfix      # build/princess-maker-en-bugfix.ips
+    python3 -I tools/rom/build.py --variant questing    # build/princess-maker-en-questing.ips
+
+To publish a release (all three patches, with `docs/release-notes.md` as its text; needs the GitHub CLI, `gh`):
+
+    python3 -I tools/rom/release.py v1.0 [--draft]
 
 | Path | What |
 | --- | --- |

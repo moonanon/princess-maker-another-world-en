@@ -5,7 +5,8 @@ Scripts run by hand with `python3 -I` (stdlib only, plus Pillow for graphics). T
 
 ## rom/: reading and building the ROM
 
-- `build.py`: base ROM + `src/patches/*.py` in name order (and `src/gamefix/` for the variants) -> `build/*.sfc` + `dist/*.ips`.
+- `build.py`: base ROM + `src/patches/*.py` in name order (and `src/gamefix/` for the variants) -> `build/*.sfc` + `build/*.ips`.
+- `release.py`: builds all three variants and publishes their IPS patches as a GitHub release (`gh`).
 - `RomExtract.py`: the base ROM (md5-checked) and HiROM address mapping.
 - `ips.py`: make and apply IPS patches.
 - `asm65816.py`: a small two-pass 65816 assembler used by the patch modules.

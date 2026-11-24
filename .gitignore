@@ -12,3 +12,6 @@ __pycache__/
 reference/
 src/text/*
 !src/text/script-en.json
+
+# Local test ROMs (ips.py apply); patches are published as GitHub releases
+dist/

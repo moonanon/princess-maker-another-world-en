@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the translation: base ROM + every src/patches/[0-9]*.py (in name order; _*.py are shared helpers) -> build/princess-maker-en.sfc + dist/princess-maker-en.ips.
+"""Build the translation: base ROM + every src/patches/[0-9]*.py (in name order; _*.py are shared helpers) -> build/princess-maker-en.sfc + build/princess-maker-en.ips.
 
     python3 -I tools/rom/build.py                          # the English script, src/text/script-en.json
     python3 -I tools/rom/build.py --variant questing       # the English + the game's bug fixes + the questing rework
@@ -26,7 +26,7 @@ import ips  # noqa: E402
 
 HEADER = 0xFFC0  # HiROM internal header
 OUT_ROM = REPO / 'build' / 'princess-maker-en.sfc'
-OUT_IPS = REPO / 'dist' / 'princess-maker-en.ips'
+OUT_IPS = REPO / 'build' / 'princess-maker-en.ips'
 VARIANTS = {'en': [], 'bugfix': ['bugfix'], 'questing': ['bugfix', 'questing']}  # extra src/gamefix/ dirs, in order
 
 
